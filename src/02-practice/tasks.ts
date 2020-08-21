@@ -277,5 +277,58 @@ import { addItem, run } from './../03-utils';
     // run(stream$);
 })();
 
+// homeTask1
+// Реализуйте функцию, которая создает Observable, который запрашивает и выдает имена ползователей и его аддрес, 
+// а имя начинается на одну из букв масива 
+(function homeTask1() {
+    const letters = ['K', 'C', 'D'];
+
+    const stream$ = from(letters).pipe(
+    concatMap(letter => ajax('http://jsonplaceholder.typicode.com/users').pipe(
+        pluck('response'),
+        map(arr => arr.map(el => `${el.name} ${el.email}`)),
+        switchMap(arr => from(arr)),
+        filter(name => name[0] === letter))
+    ));
+
+    //run(stream$);
+})();
+
+//homeTask2
+// Реализуйте функцию, которая создает Observable, который возвращает координату X клика, если она превышет значение в увеличивающемся диапазоне
+// от 100 до 110, максимальное количесвто кликов вернувшихся - 10 
+// а имя начинается на одну из букв масива 
+(function homeTask2() {
+    const target = document.body;
+    const eventName = 'click';
+    const resultSelector = (event: any) => event.clientX;
+    
+    const stream$ = range(100, 10).pipe(
+        concatMap(num => fromEvent(target, eventName, resultSelector).pipe(
+            take(1),
+            filter(clientX => clientX > num)))
+    )
+
+    //run(stream$);
+})();
+
+//homeTask3
+// Реализуйте функцию, которая создает Observable, который выводит элементы масива 1, пока они совпадают с сответсвующими элементами массива 2, при нахождение отличия - вывести ошибку, 
+// а имя начинается на одну из букв масива 
+(function homeTask3() {
+    const items1 = [1, 2, 3, 4, 5];
+    const items2 = [1, 2, 4, 4, 5];
+
+     const stream$ = zip(from(items1), from(items2)).pipe(
+         concatMap(([item1, item2]) => {         
+         if (item1 !== item2)
+            return throwError("There is a difference between arrays")
+         else
+            return of(item1)
+         })
+     );
+            
+    //run(stream$);
+})();
 
 export function runner() {}
