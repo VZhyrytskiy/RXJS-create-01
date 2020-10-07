@@ -3,7 +3,7 @@
 //   scheduler?: ShedulerLike
 // ): Observable<[string, T]>
 
-import { pairs, Scheduler, asyncScheduler } from 'rxjs';
+import { pairs, asyncScheduler } from 'rxjs';
 import { addItem, run } from './../03-utils';
 
 export function pairsDemo1() {

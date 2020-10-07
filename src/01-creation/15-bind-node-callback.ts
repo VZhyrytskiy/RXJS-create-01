@@ -6,6 +6,7 @@
 
 import { addItem, run } from './../03-utils';
 import { bindNodeCallback, asyncScheduler } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export function bindNodeCallbackDemo1() {
   function doSomething(data: string, callback: (err: Error, arg: Array<string>) => number) {
@@ -58,9 +59,9 @@ export function bindNodeCallbackDemo4() {
    callback(null, words, words.length);
   }
   
-  const boundFunc = bindNodeCallback(doSomething, (value: any) => value[0]);
+  const boundFunc = bindNodeCallback(doSomething);
   
-  const source$ = boundFunc('Some Data');
+  const source$ = boundFunc('Some Data').pipe(map((value: any) => value[0]));
   // run(source$);
 }
 

@@ -5,6 +5,7 @@
 // ): (...args: any[]) => Observable<T>
 
 import { bindCallback, asyncScheduler } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { addItem, run } from './../03-utils';
 
 export function bindCallbackDemo1() {
@@ -57,9 +58,9 @@ export function bindCallbackDemo4() {
    callback(words, words.length);
   }
   
-  const boundFunc = bindCallback(doSomething, (value: any) => value[0]);
+  const boundFunc = bindCallback(doSomething);
   
-  const source$ = boundFunc('Some Data');
+  const source$ = boundFunc('Some Data').pipe(map((value: any) => value[0]));
   // run(source$);
 }
 

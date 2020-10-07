@@ -6,7 +6,7 @@
 
 import { fromEventPattern } from 'rxjs';
 import { addItem, run } from './../03-utils';
-import { pluck } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 
 export function fromEventPatternDemo1() {
   function addHandler(handler) {
@@ -18,7 +18,7 @@ export function fromEventPatternDemo1() {
   }
 
   const resultSelector = (event: any) => event.clientX; // optional
-  const stream$ = fromEventPattern(addHandler, removeHandler, resultSelector);
+  const stream$ = fromEventPattern(addHandler, removeHandler).pipe(map(resultSelector));
 
   // run(stream$);
 }
