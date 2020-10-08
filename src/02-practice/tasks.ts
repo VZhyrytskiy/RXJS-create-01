@@ -85,9 +85,10 @@ import { addItem, run } from './../03-utils';
     // run(stream$);
 })();
 
-// Task 6. ajax()
-// Реализуйте функцию, которая создает Observable, который выдает имена ползователей. 
-// Используйте операторы: ajax('http://jsonplaceholder.typicode.com/users'), switchMap(), map()
+// Task 6. ajax() // Artem Onopriienko
+// Получить пользователей, сформировать объекты { name: ..., email: ...} и отсортировать их по массиву из 2 полей
+// const fields$ = from(['name', 'email']);
+// Используйте операторы: ajax('http://jsonplaceholder.typicode.com/users'), switchMap(), map(), withLatestFrom()
 (function task6() {
     // const stream$ =
 
@@ -276,6 +277,51 @@ import { addItem, run } from './../03-utils';
 
     // run(stream$);
 })();
+
+
+
+// Задание: получить пользователей, сформировать объекты { name: ..., email: ...} и отсортировать их по массиву из 2 полей 
+const usersData$ = ajax(`http://jsonplaceholder.typicode.com/users`);
+const fields$ = from(['name', 'email']);
+// через 2с выдать число 0 в поток
+const stream$ = usersData$
+    .pipe(
+        // достать из ответа данные, это будет массив объектов
+        map(data => data.response),
+        
+        // запустить по массиву map и преобразовать каждый объект массива в новый объект { name: ..., email: ...}
+        map(response => response.map(item => ({ name: item.name, email: item.email }))),
+
+        // подсоединяем массив полей 
+        withLatestFrom(fields$.pipe(reduce((acc, elem) => { acc.push(elem); return acc; }, []))),
+
+        // теперь у нас елемент потока выглядит так [[obj1, obj2, ...], [field1, field2]]
+        map(arr => {
+            const [data, fields] = arr;
+
+            // сортируем по первому полю
+            data.sort((el1, el2) => {
+                const [field1] = fields;
+                return el1[field1].localeCompare(el2[field1]);
+            });
+
+            // сортируем по второму полю, если первое содержит одинаковые значения
+            data.sort((el1, el2) => {
+                const [field1, field2] = fields;
+                if (el1[field1] === el2[field1]) {
+                    return el1[field2].localeCompare(el2[field2]);
+                }
+            });
+
+            return data;
+        }),
+
+        // преобразуем массив в поток элементов
+        switchMap(result => from(result))
+    );
+
+run(stream$);
+
 
 
 export function runner() {}
