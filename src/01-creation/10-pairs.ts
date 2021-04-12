@@ -3,7 +3,7 @@
 //   scheduler?: ShedulerLike
 // ): Observable<[string, T]>
 
-import { pairs, asyncScheduler } from 'rxjs';
+import { pairs, asyncScheduler, scheduled } from 'rxjs';
 import { addItem, run } from './../03-utils';
 
 export function pairsDemo1() {
@@ -35,8 +35,14 @@ export function pairsDemo2() {
   const scheduler = asyncScheduler;
 
   const stream$ = pairs(obj, scheduler);
-
+  
   // run(stream$);
+  // addItem('Next Line of Code');
+  // setTimeout(addItem, 0, 'Third Line of Code');
+
+  // result is a bit different
+  const streamNew$ = scheduled(pairs(obj), scheduler);
+  // run(streamNew$);
   // addItem('Next Line of Code');
   // setTimeout(addItem, 0, 'Third Line of Code');
 }

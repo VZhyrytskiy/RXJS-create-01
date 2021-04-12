@@ -6,7 +6,7 @@
 //    scheduler?: SchedulerLike
 // ): Observable<T>
 
-import { generate, asyncScheduler } from 'rxjs';
+import { generate, asyncScheduler, scheduled } from 'rxjs';
 import { addItem, run } from './../03-utils';
 
 export function generateDemo1() {
@@ -57,9 +57,21 @@ export function generateDemo4() {
    scheduler: asyncScheduler
   };
   
-  const source$ = generate(handleProcess);
+  const stream$ = generate(handleProcess);
   
-  // run(source$);
+  // run(stream$);
+  // setTimeout(addItem, 0, 'Some Data 1')
+  // addItem('Some Data 2');
+
+  const handleProcessNew = {
+    initialState: 1,
+    condition: (value: number) => value <= 10,
+    iterate: (value: number) => value + 1,
+    resultSelector: (value: number) => value * value,
+   };
+  const streamNew$ = scheduled(generate(handleProcess), asyncScheduler);
+  
+  // run(streamNew$);
   // setTimeout(addItem, 0, 'Some Data 1')
   // addItem('Some Data 2');
 }

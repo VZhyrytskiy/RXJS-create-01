@@ -4,7 +4,7 @@
 //   sheduler?: ShedulerLike
 // ): Observable<number>
 
-import { range, asyncScheduler } from 'rxjs';
+import { range, asyncScheduler, scheduled } from 'rxjs';
 import { addItem, run } from './../03-utils';
 
 // finite sync stream of one default start value = 0
@@ -34,7 +34,11 @@ export function rangeDemo3() {
   const scheduler = asyncScheduler;
 
   const stream$ = range(start, count, scheduler);
-
+  
   // run(stream$);
+  // addItem(200); // 200 appears first
+
+  const streamNew$ = scheduled(range(start, count), scheduler);
+  // run(streamNew$);
   // addItem(200); // 200 appears first
 }
