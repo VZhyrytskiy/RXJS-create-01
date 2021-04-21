@@ -5,6 +5,14 @@
 //   resultSelector?: (...args: any[]) =>  T  // DEPRECATED
 // ): Observable<T>
 
+// target:
+// DOM EventTarget - an object with addEventListener and removeEventListener methods.
+// Node.js EventEmitter - An object with addListener and removeListener methods.
+// JQuery-style event target - An object with on and off methods
+// DOM NodeList - List of DOM Nodes, returned for example by document.querySelectorAll or Node.childNodes.
+// HTMLCollection.
+
+
 import { fromEvent } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { addItem, run } from './../03-utils';
