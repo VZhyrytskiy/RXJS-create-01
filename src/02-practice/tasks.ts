@@ -1,5 +1,5 @@
-import { Observable, of, from, fromEvent, generate, pairs, EMPTY, concat, timer, zip, range, bindCallback, bindNodeCallback, fromEventPattern, interval, NEVER, throwError, defer, merge, pipe } from "rxjs";
-import { map, take, tap, switchMap, filter, reduce, catchError, delay, concatMap, withLatestFrom, scan, last, first } from "rxjs/operators";
+import { Observable, of, from, fromEvent, generate, pairs, EMPTY, concat, timer, zip, range, bindCallback, bindNodeCallback, fromEventPattern, interval, NEVER, throwError, defer } from "rxjs";
+import { map, take, tap, switchMap, filter, reduce, catchError, delay, concatMap, withLatestFrom } from "rxjs/operators";
 import { fromFetch } from "rxjs/fetch";
 import { ajax } from "rxjs/ajax";
 import { addItem, run } from './../03-utils';
