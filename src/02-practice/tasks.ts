@@ -102,7 +102,7 @@ import { addItem, run } from './../03-utils';
 // Реализуйте функцию, которая создает Observable, который выдает имена пользователей. 
 // Используйте операторы: fromFetch('http://jsonplaceholder.typicode.com/users'), filter(), switchMap(), map()
 // EN:
-// Implement a function that creates an Observable that emitss usernames.
+// Implement a function that creates an Observable that emits usernames.
 // Use operators: fromFetch('http://jsonplaceholder.typicode.com/users'), filter(), switchMap(), map()
 (function task5() {
     // const stream$ = 
