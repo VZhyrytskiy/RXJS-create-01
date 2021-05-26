@@ -234,7 +234,7 @@ import { addItem, run } from './../03-utils';
 // EN: 
 // Implement a function that creates an infinite Observable from an array of values
 // Use NEVER, concat(), from()
-(function task11() {
+(function task12() {
     const items = [1, 2, 3, 4, 5];
 
     // const stream$ = 
@@ -242,14 +242,14 @@ import { addItem, run } from './../03-utils';
     // run(stream$);
 })();
 
-// Task 12. throwError()
+// Task 13. throwError()
 // RU:
 // Реализуйте функцию, которая создаст Observable, который завершиться с ошибкой, если в массиве встретится число 3.
 // Используейте from, switchMap, of, throwError
 // EN:
 // Implement a function that will create an Observable that will emit error notification if the number 3 is encountered in the array.
 // Use from(), switchMap(), of(), throwError()
-(function task11() {
+(function task13() {
     const items = [1, 2, 3, 4, 5];
 
     // const stream$ = 
