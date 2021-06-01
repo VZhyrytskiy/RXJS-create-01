@@ -21,7 +21,7 @@ export function fromDemo2() {
   // run(stream$);
 }
 
-// From itarable object - string
+// From iterable object - string
 export function fromDemo3() {
   const stream$ = from('Hello World!');
 

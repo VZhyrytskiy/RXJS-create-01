@@ -24,7 +24,7 @@ import { addItem, run } from './../03-utils';
 // EN: 
 // Implement the body of a function that takes an array as input and creates an Observable,
 // which emits the values of this array
-(function task2(arr: any[]): void {
+(function task2_1(arr: any[]): void {
     // const stream$ = 
     
     // run(stream$);
@@ -39,7 +39,7 @@ import { addItem, run } from './../03-utils';
 // Implement the body of a function that creates an Observable that emits
 // random numbers in range from min to max using a generator. 
 // Return 10 numbers using take()
-(function task3() {
+(function task2_2() {
     function* generator(min, max){
         while (true) {
           yield Math.floor( Math.random() * ( max - min ) ) + min;
@@ -102,7 +102,7 @@ import { addItem, run } from './../03-utils';
 // Реализуйте функцию, которая создает Observable, который выдает имена пользователей. 
 // Используйте операторы: fromFetch('http://jsonplaceholder.typicode.com/users'), filter(), switchMap(), map()
 // EN:
-// Implement a function that creates an Observable that emitss usernames.
+// Implement a function that creates an Observable that emits usernames.
 // Use operators: fromFetch('http://jsonplaceholder.typicode.com/users'), filter(), switchMap(), map()
 (function task5() {
     // const stream$ = 
@@ -127,7 +127,7 @@ import { addItem, run } from './../03-utils';
 
 // Task7. interval()
 // RU:
-// Реализуйте функцию, которая создает Observable, который запрашивает и выдает имена ползователей каждые 5с 
+// Реализуйте функцию, которая создает Observable, который запрашивает и выдает имена пользователей каждые 5с 
 // Используйте операторы: ajax('http://jsonplaceholder.typicode.com/users'), switchMap(), map()
 // EN: 
 // Implement a function that creates an Observable that requests and returns usernames every 5s
@@ -234,7 +234,7 @@ import { addItem, run } from './../03-utils';
 // EN: 
 // Implement a function that creates an infinite Observable from an array of values
 // Use NEVER, concat(), from()
-(function task11() {
+(function task12() {
     const items = [1, 2, 3, 4, 5];
 
     // const stream$ = 
@@ -242,14 +242,14 @@ import { addItem, run } from './../03-utils';
     // run(stream$);
 })();
 
-// Task 12. throwError()
+// Task 13. throwError()
 // RU:
-// Реализуйте функцию, которая создаст Observable, который завершиться с ошибкой, если в массиве встретится число 3.
+// Реализуйте функцию, которая создаст Observable, который завершится с ошибкой, если в массиве встретится число 3.
 // Используейте from, switchMap, of, throwError
 // EN:
 // Implement a function that will create an Observable that will emit error notification if the number 3 is encountered in the array.
 // Use from(), switchMap(), of(), throwError()
-(function task11() {
+(function task13() {
     const items = [1, 2, 3, 4, 5];
 
     // const stream$ = 

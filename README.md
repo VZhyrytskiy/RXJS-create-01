@@ -14,3 +14,6 @@ Contributors:
 
 2. Artem Onopriienko (<Artem_Onopriienko@epam.com>) 
     - Task for ajax() function
+
+3. Peter Vereshagin (<Peter_Vereshagin@epam.com>) 
+    - Comments typos fix
