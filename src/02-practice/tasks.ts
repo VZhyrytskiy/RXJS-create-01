@@ -102,7 +102,7 @@ import { addItem, run } from './../03-utils';
 // Реализуйте функцию, которая создает Observable, который выдает имена пользователей. 
 // Используйте операторы: fromFetch('http://jsonplaceholder.typicode.com/users'), filter(), switchMap(), map()
 // EN:
-// Implement a function that creates an Observable that emitss usernames.
+// Implement a function that creates an Observable that emits usernames.
 // Use operators: fromFetch('http://jsonplaceholder.typicode.com/users'), filter(), switchMap(), map()
 (function task5() {
     // const stream$ = 
@@ -127,7 +127,7 @@ import { addItem, run } from './../03-utils';
 
 // Task7. interval()
 // RU:
-// Реализуйте функцию, которая создает Observable, который запрашивает и выдает имена ползователей каждые 5с 
+// Реализуйте функцию, которая создает Observable, который запрашивает и выдает имена пользователей каждые 5с 
 // Используйте операторы: ajax('http://jsonplaceholder.typicode.com/users'), switchMap(), map()
 // EN: 
 // Implement a function that creates an Observable that requests and returns usernames every 5s
@@ -244,7 +244,7 @@ import { addItem, run } from './../03-utils';
 
 // Task 12. throwError()
 // RU:
-// Реализуйте функцию, которая создаст Observable, который завершиться с ошибкой, если в массиве встретится число 3.
+// Реализуйте функцию, которая создаст Observable, который завершится с ошибкой, если в массиве встретится число 3.
 // Используейте from, switchMap, of, throwError
 // EN:
 // Implement a function that will create an Observable that will emit error notification if the number 3 is encountered in the array.
