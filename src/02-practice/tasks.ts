@@ -364,6 +364,128 @@ import { addItem, run } from './../03-utils';
     // run(stream$);
 })();
 
+// Task 18. scan() // Author: Peter Vereshagin
+// RU:
+// Реализуйте функцию, которая создает Observable.
+// Пусть есть поток objAddressStream, который выдает объекты и второй поток fieldsStream, который содержит перечень ключей объекта
+// Необходимо модифицировать первый поток так, чтобы он выдавал объекты только с данными ключей из
+// второго потока.
+// Используйте last(), switchMap(), scan(), map()
+// EN:
+// Implement the function that creates the Observable.
+// Let there be a stream objAddressStream that emits objects and a second stream fieldsStream that contains a list of object keys
+// It is necessary to modify the first stream so that it emits objects only with the key data from
+// the second stream.
+// Use operators: last(), switchMap(), scan(), map()
+(function task18() {
+    // const objAddressStream = of(
+    //     {
+    //         country: 'Ukraine',
+    //         city: 'Kyiv',
+    //         index: '02130',
+    //         street: 'Volodymyra Velikogo',
+    //         build: 100,
+    //         flat: 23
+    //     },
+    //     {
+    //         country: 'Russia',
+    //         city: 'Samara',
+    //         index: '443013',
+    //         street: 'Kievskaya',
+    //         build: 15,
+    //         flat: 123,
+    //     },
+    // );
+
+    // const fieldsStream$ = from(['country', 'street', 'flat']);
+
+    // const stream$ = objAddressStream
+    //     .pipe(switchMap(obj =>
+    //         fieldsStream$
+    //             .pipe(
+    //                 map(fieldName => ({
+    //                     [fieldName]: obj[fieldName],
+    //                 })),
+    //                 scan((acc, pair) => Object.assign( acc, pair ), {}),
+    //                 last(),
+    //             )
+    //     ))
+
+    // run(stream$);
+})();
+
+// Task 19. merge() // Author: Peter Vereshagin
+// RU:
+// Реализуйте функцию, которая создает бесконечный Observable из массива значений, выводя их каждые 500 мс таким образом, чтобы по нажатию кнопки выводилась текущая дата и время и поток завершался. Нажатие кнопки должно быть проигнорировано до момента окончания вывода всех значений массива.
+// Используейте NEVER, concat, merge, take, first
+// EN:
+// Implement a function that creates an infinite Observable from an array of values emitting them once in a 500 ms first. Output should not be interrupted by button click, but after that the button click should emit the current date and time and finish the stream
+// Use NEVER, concat(),  merge(), take(), first()
+(function task19(buttonId) {
+    // const items = [1, 2, 3, 4, 5];
+    // const itemsStream$ = interval(500)
+    //     .pipe(
+    //         switchMap(i => of(items[i])),
+    //         take(items.length)
+    //     )
+
+    // const button = document.getElementById(buttonId);
+    // const eventName = 'click';
+
+    // const buttonStream$ = fromEvent( button, eventName )
+    //     .pipe(switchMap(event => of(new Date())))
+
+    // const stream$ = concat( itemsStream$,
+    //         merge(
+    //             NEVER, buttonStream$
+    //         ).pipe(
+    //             first()
+    //         )
+    //     )
+
+    // run(stream$);
+})(`runBtn`);
+
+// Task 20. reduce() // Author: Peter Vereshagin
+// RU:
+// Реализуйте функцию, которая создает Observable, который выдает домены верхнего уровня сайтов пользователей, отсортированные по популярности
+// Используйте операторы: fromFetch('http://jsonplaceholder.typicode.com/users'), reduce(), switchMap(), from()
+// EN:
+// Implement a function that creates an Observable that emits users' websites' top level domains sorted by how frequently they are found
+// Use operators: fromFetch('http://jsonplaceholder.typicode.com/users'), reduce(), switchMap(), from()
+(function task20() {
+
+    //     const stream$ = concat(
+    //         fromFetch('http://jsonplaceholder.typicode.com/users?_limit=5'),
+    //         fromFetch('http://jsonplaceholder.typicode.com/users?_limit=5&page=2'),
+    //     )
+    //     .pipe(
+    //         filter(response => response.ok),
+    //         switchMap(response => response.json()),
+    //         switchMap( users => from(users) ),
+    //         reduce( (acc, user:any) => {
+    //             const websiteUrl = user.website
+    //             const tld = websiteUrl.replace(/^.*\.([^\.]+)$/, '$1')
+    //             Object.assign(acc,{[tld]:
+    //                 acc[tld] ? 1 + acc[tld] : 1
+    //             })
+
+    //             return acc
+    //         }, {} ),
+    //         switchMap( tlds => {
+    //                 let tldsKeys = Object.keys( tlds )
+    //                 tldsKeys.sort( (tld0, tld1,) =>  tlds[tld1] - tlds[tld0] )
+
+    //                 const tldsArr = tldsKeys.map( tldKey =>
+    //                     [ tldKey, tlds[tldKey] ]
+    //                 )
+
+    //                 return from(tldsArr)
+    //         } ),
+    //     )
+
+    // run(stream$);
+})();
 
 
 
