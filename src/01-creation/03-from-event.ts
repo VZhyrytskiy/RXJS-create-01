@@ -12,6 +12,12 @@
 // DOM NodeList - List of DOM Nodes, returned for example by document.querySelectorAll or Node.childNodes.
 // HTMLCollection.
 
+// interface EventListenerOptions {
+//   capture?: boolean;
+//   passive?: boolean;
+//   once?: boolean;
+// }
+
 
 import { fromEvent } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
