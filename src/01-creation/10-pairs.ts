@@ -1,9 +1,14 @@
 // pairs<T>(
 //   obj: Object, 
 //   scheduler?: ShedulerLike
-// ): Observable<[string, T]>
+// ): Observable<[string, T]> - DEPRECATED
 
-import { pairs, asyncScheduler, scheduled } from 'rxjs';
+//    ||
+//    \/
+
+// Use from(Object.entries(obj)) instead.
+
+import { pairs, asyncScheduler, scheduled, from } from 'rxjs';
 import { addItem, run } from './../03-utils';
 
 export function pairsDemo1() {
@@ -13,7 +18,7 @@ export function pairsDemo1() {
     age: 16
   };
 
-  const stream$ = pairs(obj);
+  const stream$ = from(Object.entries(obj));
 
   // run(stream$);
   // addItem('Next Line of Code');
@@ -34,14 +39,14 @@ export function pairsDemo2() {
 
   const scheduler = asyncScheduler;
 
-  const stream$ = pairs(obj, scheduler);
+  const streamOld$ = from(Object.entries(obj), scheduler);
   
-  // run(stream$);
+  // run(streamOld$);
   // addItem('Next Line of Code');
   // setTimeout(addItem, 0, 'Third Line of Code');
 
   // result is a bit different
-  const streamNew$ = scheduled(pairs(obj), scheduler);
+  const streamNew$ = scheduled(from(Object.entries(obj)), scheduler);
   // run(streamNew$);
   // addItem('Next Line of Code');
   // setTimeout(addItem, 0, 'Third Line of Code');

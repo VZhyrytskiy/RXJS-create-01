@@ -33,9 +33,9 @@ export function rangeDemo3() {
   const count = 10; 
   const scheduler = asyncScheduler;
 
-  const stream$ = range(start, count, scheduler);
+  const streamOld$ = range(start, count, scheduler);
   
-  // run(stream$);
+  // run(streamOld$);
   // addItem(200); // 200 appears first
 
   const streamNew$ = scheduled(range(start, count), scheduler);

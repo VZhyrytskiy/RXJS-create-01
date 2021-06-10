@@ -9,7 +9,7 @@ import { bindNodeCallback, asyncScheduler } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export function bindNodeCallbackDemo1() {
-  function doSomething(data: string, callback: (err: Error, arg: Array<string>) => number) {
+  function doSomething(data: string, callback: (err: Error, arg: Array<string>) => void) {
    const words = data.split(' ');
 
    callback(null, words);
@@ -23,7 +23,7 @@ export function bindNodeCallbackDemo1() {
 }
 
 export function bindNodeCallbackDemo2() {
-  function doSomething(data: string, callback: (err: Error, arg: Array<string>, l: number) => number) {
+  function doSomething(data: string, callback: (err: Error, arg: Array<string>, l: number) => void) {
     const words = data.split(' ');
     
     callback(null, words, words.length);
@@ -44,7 +44,7 @@ export function bindNodeCallbackDemo3() {
    callback(err, null, null);
   }
   
-  const boundFunc = bindNodeCallback(doSomething, asyncScheduler);
+  const boundFunc = bindNodeCallback(doSomething, null, asyncScheduler);
   
   const source$ = boundFunc('Some Data');
   // run(source$);
@@ -53,7 +53,7 @@ export function bindNodeCallbackDemo3() {
 
 
 export function bindNodeCallbackDemo4() {
-  function doSomething(data: string, callback: (err: Error, arg: Array<string>, l: number) => number) {
+  function doSomething(data: string, callback: (err: Error, arg: Array<string>, l: number) => void) {
    const words = data.split(' ');
 
    callback(null, words, words.length);

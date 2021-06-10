@@ -1,5 +1,5 @@
 // throwError(
-//   errorFactory: any, 
+//   errorFactory: any
 // ): Observable<never>
 
 import { throwError } from 'rxjs';

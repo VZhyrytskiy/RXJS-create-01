@@ -9,7 +9,7 @@ import { addItem, run } from './../03-utils';
 
 // Emit only 0 and complete
 export function timerDemo1() {
-  const stream$ = timer();
+  const stream$ = timer(0);
 
   // run(stream$);
 }

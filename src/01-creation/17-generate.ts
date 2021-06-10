@@ -1,9 +1,5 @@
 // generate<T, S>(
-//    initialStateOrOptions: S | GenerateOptions<T, S>, 
-//    condition?: ConditionFunc<S>, 
-//    iterate?: IterateFunc<S>, 
-//    resultSelectorOrObservable?: SchedulerLike | ResultFunc<S, T>, 
-//    scheduler?: SchedulerLike
+//    options: GenerateOptions<T, S>
 // ): Observable<T>
 
 import { generate, asyncScheduler, scheduled } from 'rxjs';
@@ -14,7 +10,8 @@ export function generateDemo1() {
   const condition = (value: number) => value <= 10;
   const iterate = (value: number) => value + 1;
 
-  const source$ = generate(initialState, condition, iterate);
+  const options = { initialState, condition, iterate };
+  const source$ = generate(options);
   
   // run(source$);
 }
@@ -25,26 +22,10 @@ export function generateDemo2() {
   const condition = (value: number) => value <= 10;
   const iterate = (value: number) => value + 1;
   const resultSelector = (value: number) => value * value;
-
-  const source$ = generate(initialState, condition, iterate, resultSelector);
+  const options = { initialState, condition, iterate, resultSelector };
+  const source$ = generate(options);
   
   // run(source$);
-}
-
-// Pass object to the generate function
-export function generateDemo3() {
-  const handleProcess = {
-   initialState: 1,
-   condition: (value: number) => value <= 10,
-   iterate: (value: number) => value + 1,
-   resultSelector: (value: number) => value * value
-  };
-  
-  const source$ = generate(handleProcess);
-  
-  // run(source$);
-  // setTimeout(addItem, 0, 'Some Data 1')
-  // addItem('Some Data 2');
 }
 
 // Pass object to the generate function

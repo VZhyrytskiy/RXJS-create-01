@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { addItem, run } from './../03-utils';
 
 export function bindCallbackDemo1() {
-  function doSomething(data: string, callback: (arg: Array<string>) => number) {
+  function doSomething(data: string, callback: (arg: Array<string>) => void): void {
    const words = data.split(' ');
 
    callback(words);
@@ -23,7 +23,7 @@ export function bindCallbackDemo1() {
 }
 
 export function bindCallbackDemo2() {
-  function doSomething(data: string, callback: (arg: Array<string>, l: number) => number) {
+  function doSomething(data: string, callback: (arg: Array<string>, l: number) => void): void {
     const words = data.split(' ');
     
     callback(words, words.length);
@@ -37,13 +37,13 @@ export function bindCallbackDemo2() {
 }
 
 export function bindCallbackDemo3() {
-  function doSomething(data: string, callback: (arg: Array<string>, l: number) => number) {
+  function doSomething(data: string, callback: (arg: Array<string>, l: number) => number): void {
    const words = data.split(' ');
 
    callback(words, words.length);
   }
   
-  const boundFunc = bindCallback(doSomething, asyncScheduler);
+  const boundFunc = bindCallback(doSomething, null, asyncScheduler);
   
   const source$ = boundFunc('Some Data');
   // run(source$);
@@ -52,7 +52,7 @@ export function bindCallbackDemo3() {
 
 
 export function bindCallbackDemo4() {
-  function doSomething(data: string, callback: (arg: Array<string>, l: number) => number) {
+  function doSomething(data: string, callback: (arg: Array<string>, l: number) => void): void {
    const words = data.split(' ');
 
    callback(words, words.length);
